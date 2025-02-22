@@ -1,4 +1,8 @@
-import WelcomeMessage from './components/WelcomeMessage';
+import React from 'react';
+import UserProfile from './components/UserProfile';
+import Header from './components/Header';
+import MainContent from './components/MainContent';
+import Footer from './components/Footer';
 import { useState } from 'react';
 import reactLogo from './assets/react.svg';
 import viteLogo from '/vite.svg';
@@ -9,16 +13,19 @@ function App() {
 
   return (
     <>
+      <Header />
+      <MainContent />
+      <UserProfile name="Melvin" age="26" bio="Loves football and photography" /> {/* Adding UserProfile with props */}
+      <Footer />
       <div>
-        <a href="https://vite.dev" target="_blank">
+        <a href="https://vite.dev" target="_blank" rel="noopener noreferrer">
           <img src={viteLogo} className="logo" alt="Vite logo" />
         </a>
-        <a href="https://react.dev" target="_blank">
+        <a href="https://react.dev" target="_blank" rel="noopener noreferrer">
           <img src={reactLogo} className="logo react" alt="React logo" />
         </a>
       </div>
       <h1>Vite + React</h1>
-      <WelcomeMessage /> {/* Adding the WelcomeMessage component */}
       <div className="card">
         <button onClick={() => setCount((count) => count + 1)}>
           count is {count}
