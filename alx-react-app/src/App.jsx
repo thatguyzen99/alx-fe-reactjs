@@ -26,7 +26,7 @@ function App() {
       </div>
       <h1>Vite + React</h1>
       <WelcomeMessage />
-      <UserProfile name="Melvin" age="25" bio="Loves Football and photography" />
+      <UserProfile name="Alice" age="25" bio="Loves hiking and photography" />
       <div className="card">
         <button onClick={() => setCount((count) => count + 1)}>
           count is {count}
