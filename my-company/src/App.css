@@ -1,39 +1,79 @@
-
-body {
-  margin: 0;
-  font-family: Arial, sans-serif;
-  background-color: #f8f9fa;
+.App {
+  text-align: center;
+  font-family: 'Arial, sans-serif';
+  color: #333;
 }
 
-nav {
-  background-color: #343a40;
-  color: white;
-  padding: 10px;
+.App-logo {
+  height: 40vmin;
+  pointer-events: none;
 }
 
-nav a {
-  color: white;
-  text-decoration: none;
-  margin: 0 10px;
+@media (prefers-reduced-motion: no-preference) {
+  .App-logo {
+    animation: App-logo-spin infinite 20s linear;
+  }
 }
 
-nav a:hover {
-  text-decoration: underline;
-}
-
-.container {
+.App-header {
+  background-color: #1e1e2f;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  color: #f0f0f0;
   padding: 20px;
 }
 
-h1 {
-  color: #343a40;
+.App-link {
+  color: #61dafb;
+  text-decoration: none;
+  font-weight: bold;
+  border-bottom: 2px solid transparent;
+  transition: border-bottom 0.3s ease;
 }
 
-ul {
-  list-style-type: none;
-  padding: 0;
+.App-link:hover {
+  border-bottom: 2px solid #61dafb;
 }
 
-ul li {
+@keyframes App-logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+button {
+  background-color: #61dafb;
+  border: none;
+  padding: 10px 20px;
+  color: white;
+  font-size: 1em;
+  cursor: pointer;
+  border-radius: 5px;
+  transition: background-color 0.3s ease;
+}
+
+button:hover {
+  background-color: #21a1f1;
+}
+
+input[type="text"],
+input[type="email"],
+textarea {
+  width: 100%;
+  padding: 10px;
   margin: 10px 0;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+form {
+  max-width: 500px;
+  margin: 0 auto;
 }
