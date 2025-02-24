@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
-import { useRecipeStore } from '../Store/recipeStore'; // Ensure the correct case for folder name
+import { useRecipeStore } from '../store/recipeStore';
+
 
 const AddRecipeForm = () => {
   const addRecipe = useRecipeStore(state => state.addRecipe);

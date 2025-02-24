@@ -1,5 +1,5 @@
 import React from 'react';
-import { useRecipeStore } from '../Store/recipeStore';
+import { useRecipeStore } from '../store/recipeStore';
 import { Link } from 'react-router-dom';
 
 const RecipeList = () => {
