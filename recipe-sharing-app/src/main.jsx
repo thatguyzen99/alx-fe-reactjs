@@ -1,11 +1,11 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
+import ReactDOM from 'react-dom/client';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import App from './App';
 import RecipeDetails from './components/RecipeDetails';
 import './index.css';
 
-ReactDOM.render(
+ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
     <Router>
       <Routes>
@@ -13,6 +13,5 @@ ReactDOM.render(
         <Route path="/recipe/:id" element={<RecipeDetails />} />
       </Routes>
     </Router>
-  </React.StrictMode>,
-  document.getElementById('root')
+  </React.StrictMode>
 );
