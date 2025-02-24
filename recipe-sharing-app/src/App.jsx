@@ -20,7 +20,7 @@ function App() {
         <RecipeList />
       </div>
     </>
-  )
+  );
 }
 
 export default App;
