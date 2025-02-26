@@ -1,4 +1,4 @@
-import useStore from './useRecipeStore';
+import useStore from './RecipeStore';
 
 function FavouritesList() {
   const { favourites, removeFavourite } = useStore();
