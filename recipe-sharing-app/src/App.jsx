@@ -1,15 +1,17 @@
 import { useState } from 'react';
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import reactLogo from './assets/react.svg';
 import viteLogo from '/vite.svg';
 import './App.css';
 import RecipeList from './components/RecipeList';
 import AddRecipeForm from './components/AddRecipeForm';
+import RecipeDetails from './components/RecipeDetails';
 
 function App() {
   const [count, setCount] = useState(0);
 
   return (
-    <>
+    <Router>
       <div>
         <a href="https://vite.dev" target="_blank">
           <img src={viteLogo} className="logo" alt="Vite logo" />
@@ -34,7 +36,10 @@ function App() {
       <h2>Recipe Sharing App</h2>
       <AddRecipeForm />
       <RecipeList />
-    </>
+      <Switch>
+        <Route path="/recipe/:id" component={RecipeDetails} />
+      </Switch>
+    </Router>
   );
 }
 
