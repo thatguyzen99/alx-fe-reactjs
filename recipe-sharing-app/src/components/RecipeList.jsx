@@ -1,24 +1,15 @@
-import useStore from './RecipeStore';
+import useStore from '../recipeStore';
 
-function FavouritesList() {
-  const { favourites, removeFavourite } = useStore();
+const RecipeList = () => {
+  const recipes = useStore(state => state.recipes);
 
   return (
-    <div>
-      <h2>Favourite Items</h2>
-      <ul>
-        {favourites.length > 0 ? (
-          favourites.map((item, index) => (
-            <li key={index}>
-              {item} <button onClick={() => removeFavourite(item)}>Remove</button>
-            </li>
-          ))
-        ) : (
-          <p>No favourites yet.</p>
-        )}
-      </ul>
-    </div>
+    <ul>
+      {recipes.map((recipe, index) => (
+        <li key={index}>{recipe.name}</li>
+      ))}
+    </ul>
   );
-}
+};
 
-export default FavouritesList;
+export default RecipeList;
