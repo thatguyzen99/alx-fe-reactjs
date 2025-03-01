@@ -1,5 +1,5 @@
 import { useParams, useNavigate } from "react-router-dom";
-import { useRecipeStore } from "./recipeStore";
+import { useRecipeStore } from "../store/recipeStore"; // Updated path
 import EditRecipeForm from "./EditRecipeForm";
 import DeleteRecipeButton from "./DeleteRecipeButton";
 
@@ -24,7 +24,7 @@ const RecipeDetails = () => {
   return (
     <div>
       <h1>{recipe.title}</h1>
-      <p><strong>ID:</strong> {recipe.id}</p> {/* Added recipe.id here */}
+      <p><strong>ID:</strong> {recipe.id}</p>
       <p>{recipe.description}</p>
       <button onClick={handleFavorite}>
         {isFavorite ? "Remove from Favorites" : "Add to Favorites"}
