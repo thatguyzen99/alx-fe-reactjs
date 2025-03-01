@@ -24,6 +24,7 @@ const RecipeDetails = () => {
   return (
     <div>
       <h1>{recipe.title}</h1>
+      <p><strong>ID:</strong> {recipe.id}</p> {/* Added recipe.id here */}
       <p>{recipe.description}</p>
       <button onClick={handleFavorite}>
         {isFavorite ? "Remove from Favorites" : "Add to Favorites"}
