@@ -1,16 +1,16 @@
 // src/components/EditRecipeForm.jsx
 import { useState } from "react";
-import { useRecipeStore } from "../store/recipeStore"; // Adjust path based on your structure
+import { useRecipeStore } from "../store/recipeStore"; // Adjust path as needed
 
 const EditRecipeForm = ({ recipe }) => {
   const updateRecipe = useRecipeStore((state) => state.updateRecipe);
   const [title, setTitle] = useState(recipe.title);
   const [description, setDescription] = useState(recipe.description);
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    const updatedRecipe = { id: recipe.id, title, description }; // Preserve the ID
-    updateRecipe(updatedRecipe); // Update the store
+  const handleSubmit = (event) => {
+    event.preventDefault(); // Explicitly added to prevent page refresh
+    const updatedRecipe = { id: recipe.id, title, description };
+    updateRecipe(updatedRecipe);
   };
 
   return (
