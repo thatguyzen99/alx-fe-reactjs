@@ -1,23 +1,26 @@
-import React from 'react';
-import { useQuery } from 'react-query';
+import React from "react";
+import { useQuery } from "react-query";
 
 // Function to fetch posts from the API
 const fetchPosts = async () => {
-  const res = await fetch('https://jsonplaceholder.typicode.com/posts');
+  const res = await fetch("https://jsonplaceholder.typicode.com/posts");
   if (!res.ok) {
-    throw new Error('Network response was not ok');
+    throw new Error("Network response was not ok");
   }
   return res.json();
 };
 
 const PostsComponent = () => {
-  const { data, error, isLoading, isFetching, refetch } = useQuery('posts', fetchPosts);
+  const { data, error, isLoading, isFetching, isError, refetch } = useQuery(
+    "posts",
+    fetchPosts
+  );
 
   if (isLoading) {
     return <div>Loading...</div>;
   }
 
-  if (error) {
+  if (isError) {
     return <div>Error: {error.message}</div>;
   }
 
