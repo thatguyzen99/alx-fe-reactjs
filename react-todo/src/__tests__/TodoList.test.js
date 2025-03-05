@@ -27,3 +27,9 @@ test('deletes a todo', () => {
   fireEvent.click(screen.getAllByText(/Delete/i)[0]);
   expect(screen.queryByText(/Learn React/i)).toBeNull();
 });
+
+test('does not add an empty todo', () => {
+  render(<TodoList />);
+  fireEvent.click(screen.getByText(/Add Todo/i));
+  expect(screen.queryByText('')).toBeNull();
+});
