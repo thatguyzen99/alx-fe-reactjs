@@ -31,5 +31,5 @@ test('deletes a todo', () => {
 test('does not add an empty todo', () => {
   render(<TodoList />);
   fireEvent.click(screen.getByText(/Add Todo/i));
-  expect(screen.queryByText('')).toBeNull();
+  expect(screen.queryAllByRole('listitem').length).toBe(2); // Initial todos should remain unchanged
 });
