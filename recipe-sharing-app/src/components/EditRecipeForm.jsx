@@ -1,6 +1,6 @@
 // src/components/EditRecipeForm.jsx
 import { useState } from "react";
-import { useRecipeStore } from "../store/recipeStore"; // Adjust path as needed
+import { useRecipeStore } from "./recipeStore"; // Adjust path as needed
 
 const EditRecipeForm = ({ recipe }) => {
   const updateRecipe = useRecipeStore((state) => state.updateRecipe);
