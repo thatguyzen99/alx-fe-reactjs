@@ -15,6 +15,7 @@ function App() {
         <Route path="/" element={<Home />} />
         <Route path="/profile/*" element={<ProtectedRoute element={<Profile />} isAuthenticated={isAuthenticated} />} />
         <Route path="/post/:postId" element={<BlogPost />} />
+        <Route path="/blog/:id" element={<BlogPost />} /> {/* Added dynamic blog route */}
       </Routes>
     </Router>
   );
