@@ -7,6 +7,9 @@ function RegistrationForm() {
     password: "",
   });
   const [errors, setErrors] = useState({});
+  
+  // Destructure for clarity
+  const { username, email, password } = formData;
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -15,9 +18,9 @@ function RegistrationForm() {
 
   const validate = () => {
     const newErrors = {};
-    if (!formData.username) newErrors.username = "Username is required";
-    if (!formData.email) newErrors.email = "Email is required";
-    if (!formData.password) newErrors.password = "Password is required";
+    if (!username) newErrors.username = "Username is required";
+    if (!email) newErrors.email = "Email is required";
+    if (!password) newErrors.password = "Password is required";
     return newErrors;
   };
 
@@ -28,7 +31,6 @@ function RegistrationForm() {
       setErrors(validationErrors);
       return;
     }
-    // Simulate API call
     console.log("Form submitted:", formData);
     alert("Registration successful (mock API call)!");
     setFormData({ username: "", email: "", password: "" });
@@ -44,7 +46,7 @@ function RegistrationForm() {
           <input
             type="text"
             name="username"
-            value={formData.username} // Corrected
+            value={username} // Using destructured value
             onChange={handleChange}
           />
           {errors.username && <p style={{ color: "red" }}>{errors.username}</p>}
@@ -54,7 +56,7 @@ function RegistrationForm() {
           <input
             type="email"
             name="email"
-            value={formData.email} // Corrected
+            value={email} // Using destructured value
             onChange={handleChange}
           />
           {errors.email && <p style={{ color: "red" }}>{errors.email}</p>}
@@ -64,7 +66,7 @@ function RegistrationForm() {
           <input
             type="password"
             name="password"
-            value={formData.password} // Corrected
+            value={password} // Using destructured value
             onChange={handleChange}
           />
           {errors.password && <p style={{ color: "red" }}>{errors.password}</p>}

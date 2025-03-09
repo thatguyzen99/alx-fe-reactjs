@@ -19,7 +19,6 @@ function FormikForm() {
   };
 
   const handleSubmit = (values, { resetForm }) => {
-    // Simulate API call
     console.log("Form submitted:", values);
     alert("Registration successful (mock API call)!");
     resetForm();
@@ -37,7 +36,11 @@ function FormikForm() {
           <div>
             <label>Username:</label>
             <Field type="text" name="username" />
-            <ErrorMessage name="username" component="p" style={{ color: "red" }} />
+            <ErrorMessage
+              name="username"
+              component="p"
+              style={{ color: "red" }}
+            />
           </div>
           <div>
             <label>Email:</label>
@@ -47,7 +50,11 @@ function FormikForm() {
           <div>
             <label>Password:</label>
             <Field type="password" name="password" />
-            <ErrorMessage name="password" component="p" style={{ color: "red" }} />
+            <ErrorMessage
+              name="password"
+              component="p"
+              style={{ color: "red" }}
+            />
           </div>
           <button type="submit">Submit</button>
         </Form>
