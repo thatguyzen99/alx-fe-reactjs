@@ -7,8 +7,6 @@ function RegistrationForm() {
     password: "",
   });
   const [errors, setErrors] = useState({});
-  
-  // Destructure for clarity
   const { username, email, password } = formData;
 
   const handleChange = (e) => {
@@ -46,7 +44,7 @@ function RegistrationForm() {
           <input
             type="text"
             name="username"
-            value={username} // Using destructured value
+            value={username}
             onChange={handleChange}
           />
           {errors.username && <p style={{ color: "red" }}>{errors.username}</p>}
@@ -56,7 +54,7 @@ function RegistrationForm() {
           <input
             type="email"
             name="email"
-            value={email} // Using destructured value
+            value={email}
             onChange={handleChange}
           />
           {errors.email && <p style={{ color: "red" }}>{errors.email}</p>}
@@ -66,7 +64,7 @@ function RegistrationForm() {
           <input
             type="password"
             name="password"
-            value={password} // Using destructured value
+            value={password}
             onChange={handleChange}
           />
           {errors.password && <p style={{ color: "red" }}>{errors.password}</p>}
