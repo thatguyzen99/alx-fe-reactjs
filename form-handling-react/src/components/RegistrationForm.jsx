@@ -1,58 +1,78 @@
-import React, { useState } from "react";
+import { useState } from "react";
 
-const RegistrationForm = () => {
-  const [username, setUsername] = useState("");
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
+function RegistrationForm() {
+  const [formData, setFormData] = useState({
+    username: "",
+    email: "",
+    password: "",
+  });
   const [errors, setErrors] = useState({});
 
-  const handleSubmit = (event) => {
-    event.preventDefault();
-    const newErrors = {};
-    if (!username) newErrors.username = "Username is required";
-    if (!email) newErrors.email = "Email is required";
-    if (!password) newErrors.password = "Password is required";
-    setErrors(newErrors);
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setFormData((prev) => ({ ...prev, [name]: value }));
+  };
 
-    if (Object.keys(newErrors).length === 0) {
-      // Simulate API call
-      console.log("Form submitted:", { username, email, password });
-      // In a real app, you'd make an API call here to register the user
+  const validate = () => {
+    const newErrors = {};
+    if (!formData.username) newErrors.username = "Username is required";
+    if (!formData.email) newErrors.email = "Email is required";
+    if (!formData.password) newErrors.password = "Password is required";
+    return newErrors;
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    const validationErrors = validate();
+    if (Object.keys(validationErrors).length > 0) {
+      setErrors(validationErrors);
+      return;
     }
+    // Simulate API call
+    console.log("Form submitted:", formData);
+    alert("Registration successful (mock API call)!");
+    setFormData({ username: "", email: "", password: "" });
+    setErrors({});
   };
 
   return (
-    <form onSubmit={handleSubmit}>
-      <div>
-        <label>Username:</label>
-        <input
-          type="text"
-          value={username}
-          onChange={(e) => setUsername(e.target.value)}
-        />
-        {errors.username && <p style={{ color: "red" }}>{errors.username}</p>}
-      </div>
-      <div>
-        <label>Email:</label>
-        <input
-          type="email"
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
-        />
-        {errors.email && <p style={{ color: "red" }}>{errors.email}</p>}
-      </div>
-      <div>
-        <label>Password:</label>
-        <input
-          type="password"
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
-        />
-        {errors.password && <p style={{ color: "red" }}>{errors.password}</p>}
-      </div>
-      <button type="submit">Register</button>
-    </form>
+    <div>
+      <h2>Register</h2>
+      <form onSubmit={handleSubmit}>
+        <div>
+          <label>Username:</label>
+          <input
+            type="text"
+            name="username"
+            value={formData.username}
+            onChange={handleChange}
+          />
+          {errors.username && <p style={{ color: "red" }}>{errors.username}</p>}
+        </div>
+        <div>
+          <label>Email:</label>
+          <input
+            type="email"
+            name="email"
+            value={formData.email}
+            onChange={handleChange}
+          />
+          {errors.email && <p style={{ color: "red" }}>{errors.email}</p>}
+        </div>
+        <div>
+          <label>Password:</label>
+          <input
+            type="password"
+            name="password"
+            value={formData.password}
+            onChange={handleChange}
+          />
+          {errors.password && <p style={{ color: "red" }}>{errors.password}</p>}
+        </div>
+        <button type="submit">Submit</button>
+      </form>
+    </div>
   );
-};
+}
 
 export default RegistrationForm;
