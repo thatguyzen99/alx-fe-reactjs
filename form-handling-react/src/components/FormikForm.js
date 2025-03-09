@@ -1,3 +1,4 @@
+// src/components/formikForm.js
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import * as Yup from "yup";
 
@@ -45,7 +46,11 @@ function FormikForm() {
           <div>
             <label>Email:</label>
             <Field type="email" name="email" />
-            <ErrorMessage name="email" component="p" style={{ color: "red" }} />
+            <ErrorMessage
+              name="email"
+              component="p"
+              style={{ color: "red" }}
+            />
           </div>
           <div>
             <label>Password:</label>
