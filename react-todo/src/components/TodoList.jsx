@@ -8,7 +8,7 @@ const TodoList = () => {
   ]);
 
   const addTodo = (text) => {
-    const newTodo = { id: todos.length + 1, text, completed: false };
+    const newTodo = { id: Date.now(), text, completed: false }; // Changed to Date.now() for unique IDs
     setTodos([...todos, newTodo]);
   };
 
@@ -31,7 +31,10 @@ const TodoList = () => {
           <li
             key={todo.id}
             onClick={() => toggleTodo(todo.id)}
-            style={{ textDecoration: todo.completed ? 'line-through' : 'none' }}
+            style={{
+              textDecoration: todo.completed ? 'line-through' : 'none',
+              cursor: 'pointer', // Added for better UX
+            }}
           >
             {todo.text}
             <button onClick={(e) => { e.stopPropagation(); deleteTodo(todo.id); }}>Delete</button>

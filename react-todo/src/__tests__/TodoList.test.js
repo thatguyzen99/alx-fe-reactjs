@@ -1,35 +1,43 @@
-import React from 'react';
 import { render, screen, fireEvent } from '@testing-library/react';
 import '@testing-library/jest-dom';
 import TodoList from '../components/TodoList';
 
-test('renders TodoList component', () => {
-  render(<TodoList />);
-  const heading = screen.getByText(/Todo List/i);
-  expect(heading).toBeInTheDocument();
-});
+describe('TodoList Component', () => {
+  test('renders TodoList component', () => {
+    render(<TodoList />);
+    const heading = screen.getByText(/Todo List/i);
+    expect(heading).toBeInTheDocument();
+  });
 
-test('adds a new todo', () => {
-  render(<TodoList />);
-  fireEvent.change(screen.getByPlaceholderText(/Add new todo/i), { target: { value: 'Test Todo' } });
-  fireEvent.click(screen.getByText(/Add Todo/i));
-  expect(screen.getByText(/Test Todo/i)).toBeInTheDocument();
-});
+  test('adds a new todo', () => {
+    render(<TodoList />);
+    const input = screen.getByPlaceholderText(/Add new todo/i);
+    const addButton = screen.getByText(/Add Todo/i);
+    fireEvent.change(input, { target: { value: 'Test Todo' } });
+    fireEvent.click(addButton);
+    expect(screen.getByText(/Test Todo/i)).toBeInTheDocument();
+  });
 
-test('toggles todo completion status', () => {
-  render(<TodoList />);
-  fireEvent.click(screen.getByText(/Learn React/i));
-  expect(screen.getByText(/Learn React/i)).toHaveStyle('text-decoration: line-through');
-});
+  test('toggles todo completion status', () => {
+    render(<TodoList />);
+    const todoText = screen.getByText(/Learn React/i);
+    fireEvent.click(todoText);
+    expect(todoText).toHaveStyle('text-decoration: line-through');
+    fireEvent.click(todoText); // Added reverse toggle check
+    expect(todoText).not.toHaveStyle('text-decoration: line-through');
+  });
 
-test('deletes a todo', () => {
-  render(<TodoList />);
-  fireEvent.click(screen.getAllByText(/Delete/i)[0]);
-  expect(screen.queryByText(/Learn React/i)).toBeNull();
-});
+  test('deletes a todo', () => {
+    render(<TodoList />);
+    const deleteButton = screen.getAllByText(/Delete/i)[0];
+    fireEvent.click(deleteButton);
+    expect(screen.queryByText(/Learn React/i)).toBeNull();
+  });
 
-test('does not add an empty todo', () => {
-  render(<TodoList />);
-  fireEvent.click(screen.getByText(/Add Todo/i));
-  expect(screen.queryAllByRole('listitem').length).toBe(2); // Initial todos should remain unchanged
+  test('does not add an empty todo', () => {
+    render(<TodoList />);
+    const addButton = screen.getByText(/Add Todo/i);
+    fireEvent.click(addButton);
+    expect(screen.queryAllByRole('listitem').length).toBe(2); // Matches your 2 initial todos
+  });
 });
