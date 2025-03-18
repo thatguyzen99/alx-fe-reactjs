@@ -1,23 +1,15 @@
 import { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
+import data from '../data.json'; // Importing data.json
 
 function RecipeDetail() {
   const { id } = useParams();
   const [recipe, setRecipe] = useState(null);
 
   useEffect(() => {
-    // Fetch recipe data based on ID (mocking API call)
-    const fetchRecipe = async () => {
-      try {
-        const response = await fetch(`/api/recipes/${id}`);
-        const data = await response.json();
-        setRecipe(data);
-      } catch (error) {
-        console.error('Error fetching recipe:', error);
-      }
-    };
-
-    fetchRecipe();
+    // Simulating fetching recipe from JSON data
+    const foundRecipe = data.recipes.find((item) => item.id === parseInt(id));
+    setRecipe(foundRecipe);
   }, [id]);
 
   if (!recipe) return <p>Loading...</p>;
@@ -25,7 +17,19 @@ function RecipeDetail() {
   return (
     <div className="p-4">
       <h1 className="text-2xl font-bold">{recipe.title}</h1>
-      <p>{recipe.description}</p>
+      <img src={recipe.image} alt={recipe.title} className="w-full max-w-md rounded-lg shadow-lg" />
+      <h2 className="text-xl font-semibold mt-4">Ingredients:</h2>
+      <ul className="list-disc list-inside">
+        {recipe.ingredients.map((ingredient, index) => (
+          <li key={index}>{ingredient}</li>
+        ))}
+      </ul>
+      <h2 className="text-xl font-semibold mt-4">Instructions:</h2>
+      <ol className="list-decimal list-inside">
+        {recipe.instructions.map((instruction, index) => (
+          <li key={index}>{instruction}</li>
+        ))}
+      </ol>
     </div>
   );
 }
