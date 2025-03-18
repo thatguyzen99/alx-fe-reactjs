@@ -1,27 +1,33 @@
-import React from 'react';
+import { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
-import recipesData from '../data.json';
 
-const RecipeDetail = () => {
+function RecipeDetail() {
   const { id } = useParams();
-  const recipe = recipesData.find((r) => r.id === parseInt(id));
+  const [recipe, setRecipe] = useState(null);
 
-  if (!recipe) return <p className="text-center text-red-500">Recipe not found!</p>;
+  useEffect(() => {
+    // Fetch recipe data based on ID (mocking API call)
+    const fetchRecipe = async () => {
+      try {
+        const response = await fetch(`/api/recipes/${id}`);
+        const data = await response.json();
+        setRecipe(data);
+      } catch (error) {
+        console.error('Error fetching recipe:', error);
+      }
+    };
+
+    fetchRecipe();
+  }, [id]);
+
+  if (!recipe) return <p>Loading...</p>;
 
   return (
-    <div className="container mx-auto p-4 max-w-2xl">
-      <img src={recipe.image} alt={recipe.title} className="w-full h-60 object-cover rounded-md" />
-      <h1 className="text-3xl font-bold mt-4">{recipe.title}</h1>
-      <p className="text-gray-700 mt-2">{recipe.summary}</p>
-      <h2 className="text-2xl font-semibold mt-4">Ingredients:</h2>
-      <ul className="list-disc ml-6 text-gray-700">
-        {recipe.ingredients?.map((item, index) => (
-          <li key={index}>{item}</li>
-        ))}
-      </ul>
-      <h2 className="text-2xl font-semibold mt-4">Instructions:</h2>
-      <p className="text-gray-700">{recipe.instructions}</p>
+    <div className="p-4">
+      <h1 className="text-2xl font-bold">{recipe.title}</h1>
+      <p>{recipe.description}</p>
     </div>
   );
-};
+}
+
 export default RecipeDetail;
